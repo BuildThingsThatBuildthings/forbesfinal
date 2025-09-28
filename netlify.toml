@@ -6,6 +6,7 @@
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "20.18.0"
+  NPM_FLAGS = "--legacy-peer-deps"
   # Fallback values for missing Sanity config
   NEXT_PUBLIC_SANITY_PROJECT_ID = "placeholder-project-id"
   NEXT_PUBLIC_SANITY_DATASET = "production"
