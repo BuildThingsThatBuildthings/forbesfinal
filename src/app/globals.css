@@ -1,26 +1,748 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Forbes Integrative Medicine - Minimalist Design System */
+    /* Clean, calming, medical professionalism */
+
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 222 47% 11%; /* Deep navy */
+    --card: 210 20% 98%; /* Pearl white */
+    --card-foreground: 215 20% 25%; /* Dark slate */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 199 89% 48%; /* Sky blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%; /* Light gray */
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 214 32% 96%; /* Very light gray */
+    --muted-foreground: 215 16% 47%; /* Medium gray */
+    --accent: 199 95% 74%; /* Light blue accent */
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%; /* Error red */
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 142 76% 36%; /* Success green */
+    --success-foreground: 0 0% 98%;
+
+    --warning: 38 92% 50%; /* Warning amber */
+    --warning-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%; /* Light border */
+    --input: 214 32% 96%; /* Input background */
+    --ring: 199 89% 48%; /* Focus ring blue */
+
+    /* Component-specific tokens */
+    --card-elevated: 0 0% 100%;
+    --surface-light: 210 20% 98%;
+    --text-primary: 222 47% 11%;
+    --text-secondary: 215 16% 47%;
+    --divider: 214 32% 91%;
+
+    /* Typography tokens */
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Spacing and sizing tokens */
+    --radius-sm: 0.25rem; /* 4px */
+    --radius: 0.5rem; /* 8px */
+    --radius-md: 0.75rem; /* 12px */
+    --radius-lg: 1rem; /* 16px */
+
+    /* Animation tokens */
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased scroll-smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    line-height: 1.6;
+  }
+
+  /* Typography Hierarchy - Clean and Minimal */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl leading-tight mb-6;
+    font-weight: 700;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight mb-4;
+    font-weight: 600;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug mb-3;
+    font-weight: 600;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl leading-snug mb-3;
+    font-weight: 500;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl leading-relaxed mb-2;
+    font-weight: 500;
+  }
+
+  h6 {
+    @apply text-base md:text-lg leading-relaxed mb-2;
+    font-weight: 500;
+  }
+
+  /* Body text with generous line-height for calm reading */
+  p {
+    @apply text-base leading-relaxed text-slate-700 mb-4;
+  }
+
+  .lead {
+    @apply text-lg md:text-xl leading-relaxed text-slate-600 font-normal mb-6;
+  }
+
+  small {
+    @apply text-sm text-slate-500;
+  }
+
+  /* Links - minimal styling */
+  a {
+    @apply text-sky-600 underline underline-offset-2 decoration-sky-200 transition-colors;
+  }
+  
+  a:hover {
+    @apply text-sky-700 decoration-sky-400;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-sky-500 ring-offset-2;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-sky-100 text-sky-900;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
+  }
+}
+
+@layer components {
+  /* Layout Components */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  .container-narrow {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl;
+  }
+
+  .container-wide {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl;
+  }
+
+  /* Section spacing with luxury proportions */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-lg {
+    @apply py-20 md:py-32 lg:py-40;
+  }
+
+  /* Card System - Luxury Medical Aesthetic */
+  .card {
+    @apply bg-white rounded-lg border border-neutral-200/50 transition-all duration-300;
+  }
+
+  .card-luxury {
+    @apply card shadow-card p-6 md:p-8 hover:shadow-card-hover;
+  }
+
+  .card-elevated {
+    @apply card shadow-lg p-8 md:p-10;
+  }
+
+  .card-hero {
+    @apply card shadow-luxury p-10 md:p-12 lg:p-16;
+  }
+
+  .card-medical {
+    @apply card border-teal-100 bg-gradient-to-br from-white to-teal-50/30 p-6 md:p-8;
+  }
+
+  /* Button System - Professional Medical CTAs */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-base transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .btn-xl {
+    @apply px-10 py-5 text-xl;
+  }
+
+  /* Primary button - Deep teal for main actions */
+  .btn-primary {
+    @apply btn bg-teal-500 text-white rounded-md hover:bg-teal-600 active:bg-teal-700 shadow-sm hover:shadow-md focus-visible:ring-teal-500;
+  }
+
+  /* Secondary button - Champagne for supporting actions */
+  .btn-secondary {
+    @apply btn bg-champagne-500 text-obsidian rounded-md hover:bg-champagne-600 active:bg-champagne-700 focus-visible:ring-champagne-500;
+  }
+
+  /* Ghost button - Subtle for tertiary actions */
+  .btn-ghost {
+    @apply btn border border-neutral-300 text-obsidian rounded-md hover:bg-neutral-50 active:bg-neutral-100 focus-visible:ring-neutral-500;
+  }
+
+  /* Medical button - For health-related actions */
+  .btn-medical {
+    @apply btn bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-md hover:from-teal-600 hover:to-teal-700 shadow-md hover:shadow-lg focus-visible:ring-teal-500;
+  }
+
+  /* Outline button - Professional alternative */
+  .btn-outline {
+    @apply btn border-2 border-teal-500 text-teal-600 rounded-md hover:bg-teal-50 active:bg-teal-100 focus-visible:ring-teal-500;
+  }
+
+  /* Link button - Text-based actions */
+  .btn-link {
+    @apply inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors duration-200 underline-offset-4 hover:underline;
+  }
+
+  /* Form Components */
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-obsidian;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-md bg-white text-obsidian placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors duration-200;
+  }
+
+  .form-textarea {
+    @apply form-input resize-y min-h-[120px];
+  }
+
+  .form-select {
+    @apply form-input pr-10 bg-white;
+  }
+
+  .form-error {
+    @apply text-sm text-error-600;
+  }
+
+  .form-help {
+    @apply text-sm text-neutral-600;
+  }
+
+  /* Medical-specific Components */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-champagne-50 to-champagne-100 border border-champagne-200 rounded-full text-sm font-medium text-champagne-800;
+  }
+
+  .medical-disclaimer {
+    @apply text-sm text-neutral-600 italic leading-relaxed;
+  }
+
+  .credential-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 bg-teal-100 text-teal-800 text-xs font-medium rounded-full;
+  }
+
+  .appointment-card {
+    @apply card-luxury border-l-4 border-l-teal-500;
+  }
+
+  .testimonial-card {
+    @apply card-luxury relative before:absolute before:top-4 before:left-4 before:text-6xl before:text-champagne-300 before:content-["\201C"] before:font-serif before:leading-none;
+  }
+
+  /* Navigation Components */
+  .nav-link {
+    @apply text-ink hover:text-teal-600 transition-colors duration-200 font-medium;
+  }
+
+  .nav-link-active {
+    @apply text-teal-600 font-semibold;
+  }
+
+  /* Status Indicators */
+  .status-success {
+    @apply inline-flex items-center gap-2 px-3 py-1 bg-success-100 text-success-800 text-sm font-medium rounded-full;
+  }
+
+  .status-warning {
+    @apply inline-flex items-center gap-2 px-3 py-1 bg-warning-100 text-warning-800 text-sm font-medium rounded-full;
+  }
+
+  .status-error {
+    @apply inline-flex items-center gap-2 px-3 py-1 bg-error-100 text-error-800 text-sm font-medium rounded-full;
+  }
+
+  /* Dividers */
+  .divider {
+    @apply border-t border-neutral-200;
+  }
+
+  .divider-luxury {
+    @apply border-t border-champagne-200;
+  }
+
+  .divider-medical {
+    @apply border-t border-teal-200;
+  }
+}
+
+@layer utilities {
+  /* Typography Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .font-feature-luxury {
+    font-feature-settings: "liga" 1, "kern" 1, "frac" 1;
+  }
+
+  .font-feature-medical {
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+
+  /* Luxury Animation Utilities - Refined and Elegant */
+  .animate-fade-in {
+    animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Luxury-specific animations */
+  .animate-luxury-drift {
+    animation: luxury-drift 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .animate-medical-pulse {
+    animation: medical-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-elegant-reveal {
+    animation: elegant-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-premium-shimmer {
+    animation: premium-shimmer 3s linear infinite;
+    background-size: 400% 100%;
+  }
+
+  /* Scroll Utilities */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .scroll-snap-y {
+    scroll-snap-type: y mandatory;
+  }
+
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Focus and Accessibility Utilities */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
+  }
+
+  .focus-ring-luxury {
+    @apply focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:ring-offset-2;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Medical-specific Utilities */
+  .gradient-medical {
+    @apply bg-gradient-to-br from-teal-500 to-teal-600;
+  }
+
+  .gradient-luxury {
+    @apply bg-gradient-to-br from-champagne-300 to-champagne-400;
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #F8F7F5 0%, #FAF9F6 100%);
+  }
+
+  /* Glass morphism effects */
+  .glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .glass-luxury {
+    background: rgba(248, 247, 245, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(205, 195, 165, 0.2);
+  }
+
+  /* Aspect Ratios for Medical Images */
+  .aspect-medical {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aspect-testimonial {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Image Effects */
+  .img-luxury {
+    filter: contrast(1.05) saturate(1.1) brightness(1.02);
+  }
+
+  .img-medical {
+    filter: contrast(1.1) saturate(0.95) brightness(1.05);
+  }
+
+  /* Hover States */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .hover-lift-sm {
+    @apply transition-transform duration-200 hover:scale-102;
+  }
+
+  .hover-shadow {
+    @apply transition-shadow duration-300 hover:shadow-lg;
+  }
+
+  /* Layout Utilities */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Print Styles */
+  @media print {
+    .print-hidden {
+      display: none !important;
+    }
+
+    .print-visible {
+      display: block !important;
+    }
+  }
+}
+
+@theme inline {
+
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --radius-md: calc(var(--radius) - 2px);
+
+  --radius-lg: var(--radius);
+
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+
+  --color-input: var(--input);
+
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+
+  --color-chart-2: var(--chart-2);
+
+  --color-chart-3: var(--chart-3);
+
+  --color-chart-4: var(--chart-4);
+
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --color-sidebar-primary: var(--sidebar-primary);
+
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+  --color-sidebar-accent: var(--sidebar-accent);
+
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.205 0 0);
+
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.97 0 0);
+
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.97 0 0);
+
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.922 0 0);
+
+  --input: oklch(0.922 0 0);
+
+  --ring: oklch(0.708 0 0);
+
+  --chart-1: oklch(0.646 0.222 41.116);
+
+  --chart-2: oklch(0.6 0.118 184.704);
+
+  --chart-3: oklch(0.398 0.07 227.392);
+
+  --chart-4: oklch(0.828 0.189 84.429);
+
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  --sidebar: oklch(0.985 0 0);
+
+  --sidebar-foreground: oklch(0.145 0 0);
+
+  --sidebar-primary: oklch(0.205 0 0);
+
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.97 0 0);
+
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+
+  --sidebar-border: oklch(0.922 0 0);
+
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+
+  --background: oklch(0.145 0 0);
+
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.922 0 0);
+
+  --primary-foreground: oklch(0.205 0 0);
+
+  --secondary: oklch(0.269 0 0);
+
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: oklch(0.269 0 0);
+
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+
+  --input: oklch(1 0 0 / 15%);
+
+  --ring: oklch(0.556 0 0);
+
+  --chart-1: oklch(0.488 0.243 264.376);
+
+  --chart-2: oklch(0.696 0.17 162.48);
+
+  --chart-3: oklch(0.769 0.188 70.08);
+
+  --chart-4: oklch(0.627 0.265 303.9);
+
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --sidebar: oklch(0.205 0 0);
+
+  --sidebar-foreground: oklch(0.985 0 0);
+
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.269 0 0);
+
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+
+  --sidebar-border: oklch(1 0 0 / 10%);
+
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

@@ -1,0 +1,579 @@
+{
+  "containerVersion": {
+    "name": "Forbes Integrative Medicine GTM Setup",
+    "description": "Complete GTM configuration for medical clinic with cross-domain tracking",
+    "tags": [
+      {
+        "name": "GA4 Configuration",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "configSettings",
+            "map": [
+              {
+                "key": "linker",
+                "map": [
+                  {
+                    "key": "domains",
+                    "list": ["forbesintegrativemedicine.acubliss.app"]
+                  },
+                  {
+                    "key": "accept_incoming",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "key": "custom_map",
+                "map": [
+                  {
+                    "key": "custom_parameter_1",
+                    "value": "clinic_location"
+                  },
+                  {
+                    "key": "custom_parameter_2", 
+                    "value": "provider_type"
+                  },
+                  {
+                    "key": "custom_parameter_3",
+                    "value": "practice_type"
+                  }
+                ]
+              },
+              {
+                "key": "clinic_location",
+                "value": "Phoenix, AZ"
+              },
+              {
+                "key": "provider_type",
+                "value": "medical_acupuncture"
+              },
+              {
+                "key": "practice_type",
+                "value": "integrative_medicine"
+              },
+              {
+                "key": "send_page_view",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "All Pages"
+          }
+        ]
+      },
+      {
+        "name": "Hero CTA Click",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "hero_cta_click"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "engagement"
+              },
+              {
+                "key": "event_label",
+                "value": "book_consultation"
+              },
+              {
+                "key": "page",
+                "value": "{{Page Path}}"
+              },
+              {
+                "key": "position",
+                "value": "{{Click Element}}.dataset.position"
+              },
+              {
+                "key": "variant",
+                "value": "{{Click Element}}.dataset.variant"
+              },
+              {
+                "key": "click_text",
+                "value": "{{Click Text}}"
+              },
+              {
+                "key": "value",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "Hero CTA Click Trigger"
+          }
+        ]
+      },
+      {
+        "name": "Book Flow Start",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "book_flow_start"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "conversion"
+              },
+              {
+                "key": "event_label",
+                "value": "booking_initiated"
+              },
+              {
+                "key": "utm_source",
+                "value": "{{URL - utm_source}}"
+              },
+              {
+                "key": "utm_medium",
+                "value": "{{URL - utm_medium}}"
+              },
+              {
+                "key": "utm_campaign",
+                "value": "{{URL - utm_campaign}}"
+              },
+              {
+                "key": "gclid",
+                "value": "{{URL - gclid}}"
+              },
+              {
+                "key": "msclkid",
+                "value": "{{URL - msclkid}}"
+              },
+              {
+                "key": "page_referrer",
+                "value": "{{Referrer}}"
+              },
+              {
+                "key": "destination_url",
+                "value": "{{Click URL}}"
+              },
+              {
+                "key": "value",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "Acubliss Click Trigger"
+          }
+        ]
+      },
+      {
+        "name": "Book Flow Complete",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "book_flow_complete"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "conversion"
+              },
+              {
+                "key": "event_label",
+                "value": "appointment_booked"
+              },
+              {
+                "key": "appointment_type",
+                "value": "{{DLV - appointment_type}}"
+              },
+              {
+                "key": "revenue",
+                "value": "{{DLV - appointment_value}}"
+              },
+              {
+                "key": "currency",
+                "value": "USD"
+              },
+              {
+                "key": "appointment_date",
+                "value": "{{DLV - appointment_date}}"
+              },
+              {
+                "key": "provider",
+                "value": "dr_forbes"
+              },
+              {
+                "key": "value",
+                "value": "{{DLV - appointment_value}}"
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "Acubliss Confirmation Page"
+          }
+        ]
+      },
+      {
+        "name": "Phone Click Event",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "phone_click"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "contact"
+              },
+              {
+                "key": "event_label",
+                "value": "phone_call"
+              },
+              {
+                "key": "device",
+                "value": "{{Device Type}}"
+              },
+              {
+                "key": "phone_number",
+                "value": "{{Click URL}}.replace('tel:', '')"
+              },
+              {
+                "key": "page",
+                "value": "{{Page Path}}"
+              },
+              {
+                "key": "value",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "Phone Click Trigger"
+          }
+        ]
+      },
+      {
+        "name": "Email Click Event",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "email_click"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "contact"
+              },
+              {
+                "key": "event_label",
+                "value": "email_click"
+              },
+              {
+                "key": "page",
+                "value": "{{Page Path}}"
+              },
+              {
+                "key": "email_address",
+                "value": "{{Click URL}}.replace('mailto:', '').split('?')[0]"
+              },
+              {
+                "key": "value",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "Email Click Trigger"
+          }
+        ]
+      },
+      {
+        "name": "FAQ Expand Event",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "key": "eventName",
+            "value": "faq_expand"
+          },
+          {
+            "key": "eventParameters",
+            "map": [
+              {
+                "key": "event_category",
+                "value": "engagement"
+              },
+              {
+                "key": "event_label",
+                "value": "faq_interaction"
+              },
+              {
+                "key": "question_id",
+                "value": "{{Click Element}}.dataset.questionId"
+              },
+              {
+                "key": "question_text",
+                "value": "{{Click Element}}.dataset.question || {{Click Text}}"
+              },
+              {
+                "key": "section",
+                "value": "{{Click Element}}.dataset.section"
+              },
+              {
+                "key": "page",
+                "value": "{{Page Path}}"
+              },
+              {
+                "key": "value",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "trigger": [
+          {
+            "name": "FAQ Click Trigger"
+          }
+        ]
+      },
+      {
+        "name": "CallRail Integration",
+        "type": "html",
+        "parameter": [
+          {
+            "key": "html",
+            "value": "<script>\n// CallRail call event integration\nif (typeof CallRail !== 'undefined') {\n  CallRail.ready(function() {\n    CallRail.on('call_complete', function(call) {\n      // Calculate quality score\n      var qualityScore = 0;\n      if (call.duration >= 180) qualityScore = 4;\n      else if (call.duration >= 120) qualityScore = 3;\n      else if (call.duration >= 60) qualityScore = 2;\n      else if (call.duration >= 30) qualityScore = 1;\n      \n      var isQualified = qualityScore >= 3;\n      var estimatedValue = isQualified ? 250 : 0;\n      \n      // Send to GA4\n      gtag('event', 'phone_call_complete', {\n        event_category: 'contact',\n        event_label: 'callrail_call',\n        call_duration: call.duration,\n        call_quality_score: qualityScore,\n        is_qualified_call: isQualified,\n        estimated_value: estimatedValue,\n        caller_area_code: call.caller_number.substring(1, 4),\n        tracking_number: call.tracking_number,\n        referrer: call.referrer_domain,\n        landing_page: call.landing_page_url,\n        call_answered: call.answered,\n        value: estimatedValue\n      });\n      \n      // Track as conversion if qualified\n      if (isQualified) {\n        gtag('event', 'qualified_call', {\n          event_category: 'conversion',\n          event_label: 'phone_consultation',\n          value: estimatedValue,\n          currency: 'USD'\n        });\n      }\n      \n      // Push to dataLayer\n      window.dataLayer.push({\n        event: 'callrail_call_complete',\n        call_duration: call.duration,\n        call_value: estimatedValue,\n        call_quality: qualityScore,\n        call_source: call.referrer_domain,\n        is_qualified_call: isQualified\n      });\n    });\n  });\n}\n</script>"
+          }
+        ],
+        "trigger": [
+          {
+            "name": "All Pages"
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "name": "All Pages",
+        "type": "pageview"
+      },
+      {
+        "name": "Hero CTA Click Trigger",
+        "type": "click",
+        "filter": [
+          {
+            "type": "cssSelector",
+            "parameter": [
+              {
+                "key": "selector",
+                "value": ".hero-cta, [data-analytics=\"hero-cta\"]"
+              }
+            ]
+          },
+          {
+            "type": "urlMatches",
+            "parameter": [
+              {
+                "key": "pattern",
+                "value": "^(?!.*acubliss).*$"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Acubliss Click Trigger",
+        "type": "click",
+        "filter": [
+          {
+            "type": "urlContains",
+            "parameter": [
+              {
+                "key": "value",
+                "value": "acubliss.app"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Acubliss Confirmation Page",
+        "type": "pageview",
+        "filter": [
+          {
+            "type": "hostname",
+            "parameter": [
+              {
+                "key": "value",
+                "value": "forbesintegrativemedicine.acubliss.app"
+              }
+            ]
+          },
+          {
+            "type": "urlContains",
+            "parameter": [
+              {
+                "key": "value",
+                "value": "confirmation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Phone Click Trigger",
+        "type": "click",
+        "filter": [
+          {
+            "type": "urlMatches",
+            "parameter": [
+              {
+                "key": "pattern",
+                "value": "^tel:.*"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Email Click Trigger", 
+        "type": "click",
+        "filter": [
+          {
+            "type": "urlMatches",
+            "parameter": [
+              {
+                "key": "pattern",
+                "value": "^mailto:.*"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FAQ Click Trigger",
+        "type": "click",
+        "filter": [
+          {
+            "type": "cssSelector",
+            "parameter": [
+              {
+                "key": "selector",
+                "value": ".faq-trigger, [data-analytics=\"faq-expand\"]"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "GA4 Measurement ID",
+        "type": "c",
+        "parameter": [
+          {
+            "key": "value",
+            "value": "G-XXXXXXXXXX"
+          }
+        ]
+      },
+      {
+        "name": "GTM Container ID",
+        "type": "c",
+        "parameter": [
+          {
+            "key": "value", 
+            "value": "GTM-XXXXXXX"
+          }
+        ]
+      },
+      {
+        "name": "CallRail Account ID",
+        "type": "c",
+        "parameter": [
+          {
+            "key": "value",
+            "value": "ACC-XXXXX"
+          }
+        ]
+      },
+      {
+        "name": "Cross Domain Auto Link",
+        "type": "aul",
+        "parameter": [
+          {
+            "key": "domainList",
+            "list": ["forbesintegrativemedicine.acubliss.app"]
+          },
+          {
+            "key": "useHashAsDelimiter",
+            "value": false
+          },
+          {
+            "key": "decorateForms",
+            "value": true
+          }
+        ]
+      },
+      {
+        "name": "Device Type",
+        "type": "jsm",
+        "parameter": [
+          {
+            "key": "javascript",
+            "value": "function() {\n  var userAgent = navigator.userAgent;\n  var width = window.innerWidth;\n  \n  if (/iPad/.test(userAgent) || (width >= 768 && width <= 1024)) {\n    return 'tablet';\n  } else if (/Mobile|Android|iPhone/.test(userAgent) || width < 768) {\n    return 'mobile';\n  } else {\n    return 'desktop';\n  }\n}"
+          }
+        ]
+      }
+    ]
+  }
+}

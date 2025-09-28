@@ -1,0 +1,44 @@
+# Robots.txt for Forbes Integrative Medicine
+# Website: https://forbesintegrative.com
+
+User-agent: *
+Allow: /
+
+# Allow specific crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Disallow private/admin areas (if any in future)
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /_next/
+Disallow: /api/
+
+# Allow common assets
+Allow: /favicon.ico
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Sitemap location
+Sitemap: https://forbesintegrative.com/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Host directive (helps with canonical domains)
+Host: https://forbesintegrative.com
