@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -9,12 +8,7 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ["image/webp", "image/avif"],
-    qualities: [75, 90, 95],
   },
-  experimental: {
-    taint: true,
-  },
-  outputFileTracingRoot: "/Users/ryan/forbes_integrative/forbes-clinic",
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -23,4 +17,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
