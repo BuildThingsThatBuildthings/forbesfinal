@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -33,7 +31,7 @@ const services = [
     title: "Chronic Pain Relief",
     description:
       "Medical acupuncture proven effective for chronic back pain, with Medicare coverage available for qualifying patients.",
-    icon: Activity,
+    iconName: "Activity",
     benefits: [
       "Chronic back & neck pain",
       "Neuropathy & nerve pain",
@@ -45,7 +43,7 @@ const services = [
     title: "Migraine & Headaches",
     description:
       "Physician-directed acupuncture protocols that significantly reduce migraine frequency and intensity.",
-    icon: Brain,
+    iconName: "Brain",
     benefits: [
       "Migraine prevention",
       "Tension headache relief",
@@ -57,7 +55,7 @@ const services = [
     title: "Women's Health & Fertility",
     description:
       "Medical acupuncture supporting fertility, IVF success rates, and hormonal balance.",
-    icon: Heart,
+    iconName: "Heart",
     benefits: [
       "IVF support protocols",
       "Menstrual regulation",
@@ -69,7 +67,7 @@ const services = [
     title: "Anxiety & Depression",
     description:
       "Evidence-based acupuncture shown to reduce anxiety and depression symptoms naturally.",
-    icon: Sparkles,
+    iconName: "Sparkles",
     benefits: [
       "Anxiety reduction",
       "Depression support",
@@ -81,7 +79,7 @@ const services = [
     title: "Neurological Conditions",
     description:
       "Specialized scalp acupuncture and neurological protocols for complex conditions.",
-    icon: Moon,
+    iconName: "Moon",
     benefits: [
       "Peripheral neuropathy",
       "Post-stroke recovery",
@@ -93,7 +91,7 @@ const services = [
     title: "Digestive Disorders",
     description:
       "Medical evaluation combined with acupuncture for comprehensive digestive care.",
-    icon: Users,
+    iconName: "Users",
     benefits: [
       "IBS management",
       "GERD/acid reflux",
@@ -347,32 +345,15 @@ export default function HomePage() {
               Limited appointments available this week.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
+              <a
+                href="https://forbesintegrativemedicine.acubliss.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white text-teal-600 hover:bg-gray-100 px-8 py-6 text-lg rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200"
-                onClick={() => {
-                  if (typeof window !== "undefined") {
-                    const currentParams = new URLSearchParams(
-                      window.location.search
-                    );
-                    const acublissUrl = new URL(
-                      "https://forbesintegrativemedicine.acubliss.app"
-                    );
-                    currentParams.forEach((value, key) => {
-                      if (
-                        key.startsWith("utm_") ||
-                        key === "gclid" ||
-                        key === "msclkid"
-                      ) {
-                        acublissUrl.searchParams.set(key, value);
-                      }
-                    });
-                    window.location.href = acublissUrl.toString();
-                  }
-                }}
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Your Consultation
-              </button>
+              </a>
               <Button
                 variant="outline"
                 size="lg"

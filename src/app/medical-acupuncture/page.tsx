@@ -1,5 +1,3 @@
-"use client";
-
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -122,24 +120,15 @@ export default function MedicalAcupuncturePage() {
                 Phoenix's only Family Medicine physician combining comprehensive medical evaluation with advanced acupuncture techniques
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
+                <a
+                  href="https://forbesintegrativemedicine.acubliss.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200"
-                  onClick={() => {
-                    if (typeof window !== 'undefined') {
-                      const currentParams = new URLSearchParams(window.location.search);
-                      const acublissUrl = new URL('https://forbesintegrativemedicine.acubliss.app');
-                      currentParams.forEach((value, key) => {
-                        if (key.startsWith('utm_') || key === 'gclid' || key === 'msclkid') {
-                          acublissUrl.searchParams.set(key, value);
-                        }
-                      });
-                      window.location.href = acublissUrl.toString();
-                    }
-                  }}
                 >
                   <Calendar className="mr-2 h-5 w-5" />
                   Book Consultation
-                </button>
+                </a>
                 <Button
                   variant="outline"
                   size="lg"
@@ -311,24 +300,15 @@ export default function MedicalAcupuncturePage() {
               Schedule a consultation to discover how medical acupuncture can support your health goals
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
+              <a
+                href="https://forbesintegrativemedicine.acubliss.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white text-teal-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200"
-                onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    const currentParams = new URLSearchParams(window.location.search);
-                    const acublissUrl = new URL('https://forbesintegrativemedicine.acubliss.app');
-                    currentParams.forEach((value, key) => {
-                      if (key.startsWith('utm_') || key === 'gclid' || key === 'msclkid') {
-                        acublissUrl.searchParams.set(key, value);
-                      }
-                    });
-                    window.location.href = acublissUrl.toString();
-                  }
-                }}
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Your Consultation
-              </button>
+              </a>
               <Button
                 variant="outline"
                 size="lg"

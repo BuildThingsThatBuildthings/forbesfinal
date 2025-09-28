@@ -1,5 +1,3 @@
-"use client";
-
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FAQSection } from "@/components/ui/faq-accordion";
@@ -236,21 +234,12 @@ export default function FAQPage() {
                 <Button
                   size="lg"
                   className="bg-teal-500 hover:bg-teal-600 text-white"
-                  onClick={() => {
-                    if (typeof window !== 'undefined') {
-                      const currentParams = new URLSearchParams(window.location.search);
-                      const acublissUrl = new URL('https://forbesintegrativemedicine.acubliss.app');
-                      currentParams.forEach((value, key) => {
-                        if (key.startsWith('utm_') || key === 'gclid' || key === 'msclkid') {
-                          acublissUrl.searchParams.set(key, value);
-                        }
-                      });
-                      window.location.href = acublissUrl.toString();
-                    }
-                  }}
+                  asChild
                 >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Schedule Consultation
+                  <a href="https://forbesintegrativemedicine.acubliss.app" target="_blank" rel="noopener noreferrer">
+                    <Calendar className="mr-2 h-5 w-5" />
+                    Schedule Consultation
+                  </a>
                 </Button>
                 <Button
                   variant="outline"

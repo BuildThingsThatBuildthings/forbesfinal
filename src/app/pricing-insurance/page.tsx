@@ -95,7 +95,7 @@ const medicareInfo = {
 const insuranceOptions = [
   {
     type: "HSA/FSA",
-    icon: CreditCard,
+    iconName: "CreditCard",
     description: "Fully eligible for Health Savings Account and Flexible Spending Account payments",
     details: [
       "Use pre-tax dollars for treatment",
@@ -106,7 +106,7 @@ const insuranceOptions = [
   },
   {
     type: "Out-of-Network Benefits",
-    icon: FileText,
+    iconName: "FileText",
     description: "We can provide documentation for insurance reimbursement claims",
     details: [
       "Detailed superbills provided",
@@ -117,7 +117,7 @@ const insuranceOptions = [
   },
   {
     type: "Direct Payment",
-    icon: DollarSign,
+    iconName: "DollarSign",
     description: "Multiple payment options for your convenience",
     details: [
       "All major credit cards",
@@ -127,6 +127,16 @@ const insuranceOptions = [
     ]
   }
 ];
+
+// Icon mapping for pricing page
+const getPricingIcon = (iconName: string) => {
+  const icons: { [key: string]: any } = {
+    CreditCard,
+    FileText,
+    DollarSign
+  };
+  return icons[iconName];
+};
 
 const faqs = [
   {
@@ -345,14 +355,16 @@ export default function PricingInsurancePage() {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {insuranceOptions.map((option, index) => (
-              <div key={index} className="bg-gradient-to-b from-sage-50 to-white p-6 rounded-lg">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
-                    <option.icon className="w-6 h-6 text-teal-700" />
+            {insuranceOptions.map((option, index) => {
+              const IconComponent = getPricingIcon(option.iconName);
+              return (
+                <div key={index} className="bg-gradient-to-b from-sage-50 to-white p-6 rounded-lg">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
+                      {IconComponent && <IconComponent className="w-6 h-6 text-teal-700" />}
+                    </div>
+                    <h3 className="text-xl font-semibold">{option.type}</h3>
                   </div>
-                  <h3 className="text-xl font-semibold">{option.type}</h3>
-                </div>
                 <p className="text-stone-600 mb-4">{option.description}</p>
                 <ul className="space-y-2">
                   {option.details.map((detail, idx) => (
@@ -362,8 +374,9 @@ export default function PricingInsurancePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,15 +1,35 @@
 "use client"
 
-import { LucideIcon, CheckCircle } from "lucide-react";
+import {
+  LucideIcon,
+  CheckCircle,
+  Activity,
+  Brain,
+  Heart,
+  Sparkles,
+  Moon,
+  Users
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  icon: LucideIcon;
+  iconName?: string;
+  icon?: LucideIcon;
   benefits?: string[];
   className?: string;
 }
+
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  Activity,
+  Brain,
+  Heart,
+  Sparkles,
+  Moon,
+  Users,
+};
 
 // Luxury color mapping for services
 const getServiceAccent = (title: string) => {
@@ -24,11 +44,13 @@ const getServiceAccent = (title: string) => {
 export function ServiceCard({
   title,
   description,
-  icon: Icon,
+  iconName,
+  icon,
   benefits,
   className,
 }: ServiceCardProps) {
-  const accent = getServiceAccent(title)
+  const accent = getServiceAccent(title);
+  const Icon = icon || (iconName ? iconMap[iconName] : null);
   
   return (
     <div
@@ -51,7 +73,7 @@ export function ServiceCard({
           accent === "champagne" && "bg-champagne-50 text-champagne-600 group-hover:bg-champagne-100",
           "group-hover:scale-105"
         )}>
-          <Icon className="h-6 w-6" />
+          {Icon && <Icon className="h-6 w-6" />}
         </div>
       </div>
 

@@ -54,26 +54,37 @@ const paradiseValleyFaqs = [
 
 const luxuryBenefits = [
   {
-    icon: Shield,
+    iconName: "Shield",
     title: "Medical Expertise",
     description: "Board-certified MD ensures comprehensive medical evaluation and safety"
   },
   {
-    icon: Sparkles,
+    iconName: "Sparkles",
     title: "Concierge Experience",
     description: "Unhurried appointments in a serene, professional environment"
   },
   {
-    icon: Heart,
+    iconName: "Heart",
     title: "Personalized Protocols",
     description: "Custom treatment plans tailored to your unique health goals"
   },
   {
-    icon: Brain,
+    iconName: "Brain",
     title: "Evidence-Based",
     description: "University-trained approach using proven medical acupuncture techniques"
   }
 ];
+
+// Icon mapping for Paradise Valley page
+const getIcon = (iconName: string) => {
+  const icons: { [key: string]: any } = {
+    Shield,
+    Sparkles,
+    Heart,
+    Brain
+  };
+  return icons[iconName];
+};
 
 const executiveConditions = [
   {
@@ -172,15 +183,18 @@ export default function ParadiseValleyPage() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {luxuryBenefits.map((benefit, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-50 to-sage-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-8 h-8 text-teal-600" />
+            {luxuryBenefits.map((benefit, index) => {
+              const IconComponent = getIcon(benefit.iconName);
+              return (
+                <div key={index} className="text-center p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-50 to-sage-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {IconComponent && <IconComponent className="w-8 h-8 text-teal-600" />}
+                  </div>
+                  <h3 className="font-semibold mb-2">{benefit.title}</h3>
+                  <p className="text-sm text-stone-600">{benefit.description}</p>
                 </div>
-                <h3 className="font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-sm text-stone-600">{benefit.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
